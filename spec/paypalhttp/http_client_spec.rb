@@ -130,7 +130,7 @@ describe HttpClient do
     })
 
     stub_request(:any, @environment.base_url).
-      to_return(body: return_data, status: 204,
+      to_return(body: return_data, status: 200,
                 headers: {
         'Some-Weird-Header' => 'Some weird value',
         'Content-Type' => 'application/json'
@@ -141,7 +141,7 @@ describe HttpClient do
 
     resp = http_client.execute(req)
 
-    expect(resp.status_code).to eq(204)
+    expect(resp.status_code).to eq(200)
     expect(resp.result.some_key).to eq('value')
     expect(resp.headers["Some-Weird-Header".downcase]).to eq(["Some weird value"])
   end
